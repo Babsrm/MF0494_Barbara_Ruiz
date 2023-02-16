@@ -1,6 +1,3 @@
-/**
- * 
- */
 package conexion;
 
 import java.sql.Connection;
@@ -8,15 +5,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * @author David
+ * @author Barbara Ruiz
  *
  */
 public class ConexionBD {
 
 	private static final String database = "dgt";
-	private static final String usuario = "root";
-	private static final String contrasena = "123456";
+	private static final String usuario = "barbara";
+	private static final String contrasena = "1234";
 	private static final String url="jdbc:mysql://localhost/"+database;
+//	create user 'barbara' IDENTIFIED by '1234';
+//	grant select, insert, delete, update on dgt.* to 'barbara';
 	
 	private Connection conexion=null;
 	
