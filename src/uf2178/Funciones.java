@@ -32,6 +32,11 @@ public class Funciones {
 	
 	public static void calculaSancion (double tasaAlcoholemia) {
 		String sancion = "";
+		
+		if (tasaAlcoholemia<0) {
+			System.err.println("El valor introducido ha de ser positivo. Vuelva a intentarlo.");
+			System.exit(-1);
+		}
 				
 		if (tasaAlcoholemia<0.25) {
 			sancion = "sin sanción";

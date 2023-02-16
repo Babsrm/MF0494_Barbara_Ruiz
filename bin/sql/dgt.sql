@@ -1,5 +1,8 @@
-create database IF NOT EXISTS dgt;
+-- Active: 1667910552053@@127.0.0.1@3306@biblioteca
 
+drop database if exists dgt;
+create database IF NOT EXISTS dgt;
+use dgt;
 create table infractores (
       dni VARCHAR(9) PRIMARY KEY,
       nombre VARCHAR(15),
@@ -14,13 +17,13 @@ values ('30000000A', 'Ana', 'López', 5, 200, 8),
        ('32323232P', 'Juan', 'Martos', 8, 300, 14),
        ('44457454S', 'Marta', 'Peña', 20, 100, 9),
        ('36534567T', 'María', 'Marín', 1, 100, 13),
-       ('367675655N', 'Luis', 'González', 3, 300, 1),
-       ('484565661K', 'Sonia', 'Tena', 11, 200, 12);
+       ('36767565N', 'Luis', 'González', 3, 300, 1),
+       ('48456561K', 'Sonia', 'Tena', 11, 200, 12);
        
       
 create table sanciones (
       idSancion smallint primary key auto_increment,
-      descripcion varchar(30),
+      descripcion varchar(50),
       importe float);
       
 insert into sanciones (descripcion, importe)
