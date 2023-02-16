@@ -2,16 +2,18 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -19,11 +21,9 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
-import modelo.Sancion;
+import modelo.Infractor;
 import net.miginfocom.swing.MigLayout;
-import java.awt.Dimension;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 public class DialogoInsertarInfractor extends JDialog {
 
@@ -102,6 +102,7 @@ public class DialogoInsertarInfractor extends JDialog {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		comboSancion = new JComboBox();
+		comboSancion.setModel(new DefaultComboBoxModel(new String[] {"No llevar casco", "Conduccion temeraria"}));
 		comboSancion.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(comboSancion, "cell 1 6 4 1,growx");
 		
@@ -147,20 +148,46 @@ public class DialogoInsertarInfractor extends JDialog {
 	}
 
 	protected void recogerDatos() {
-		// Inserta aquí el código de como recoger los datos de la interfaz de usaurio y 
-		// llama al controlador para insertar el infractor.
 		
+		try {
+		String dni = txtDNI.getText();
+		String nombre = txtNombre.getText();
+		String apellidos = txtApellidos.getText();	
+		int antiguedad = (int) spinnerAntiguedad.getValue();
+		float sancion;
+		int puntos = (int) spinnerPuntos.getValue();
+		
+		if ((float) comboSancion.getSelectedIndex()==0) {
+			sancion = 200;
+		} else {
+			sancion = 500;
+		}
+
+		Infractor infractor = new Infractor (dni, nombre, apellidos, antiguedad, sancion, puntos);
+		controlador.insertarInfractor(infractor);
+
+		JOptionPane.showMessageDialog(this, "Infractor insertado correctamente", "Info", JOptionPane.INFORMATION_MESSAGE);
+		
+		this.setVisible(false);
+		vaciarDatos();
+		}
+		catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "Hay datos sin introducir. Por favor, introduzca los datos numÃ©ricos correctos en cÃ³digo departamento/cento y los que puedan faltar.", "Faltan datos", JOptionPane.ERROR_MESSAGE);
+		}
 	}
+	
 
 	public void setControlador(Controlador controlador) {
 		this.controlador=controlador;
 		
 	}
 
-	public void setListaSanciones(ArrayList<Sancion> listaSanciones) {
-		for (Sancion sancion : listaSanciones) {
-			comboSancion.addItem(sancion);
+	public void vaciarDatos() { 
+		txtDNI.setText("");
+		txtNombre.setText("");
+		txtApellidos.setText("");	
+		spinnerAntiguedad.setValue(1);
+		comboSancion.setSelectedIndex(-1);
+		spinnerPuntos.setValue(12);
 		}
 	}
-
-}

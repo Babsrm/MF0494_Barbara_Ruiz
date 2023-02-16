@@ -1,17 +1,15 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controlador.Controlador;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class VentanaPpal extends JFrame {
 
@@ -32,12 +30,17 @@ public class VentanaPpal extends JFrame {
 		contentPane.setLayout(new MigLayout("", "[][grow][grow][grow][grow]", "[][62px][][62][][62.00]"));
 		
 		JButton btnNewButton_1 = new JButton("Mostrar Infractores");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlador.mostrarVentanaMostrarInfractores();
+			}
+		});
 		contentPane.add(btnNewButton_1, "cell 1 3,grow");
 		
 		JButton btnNewButton_2 = new JButton("Insertar Infractor");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlador.mostrarInsertarInfractores();
+				controlador.mostrarDialogoInsertarInfractor();
 			}
 		});
 		contentPane.add(btnNewButton_2, "cell 4 3,grow");
