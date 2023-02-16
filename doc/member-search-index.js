@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"uf2181","c":"FuncionesDGT","l":"FuncionesDGT()","u":"%3Cinit%3E()"},{"p":"uf2181","c":"FuncionesDGT","l":"maximaTasaPermitida(String, boolean)","u":"maximaTasaPermitida(java.lang.String,boolean)"},{"p":"uf2181","c":"FuncionesDGT","l":"mediaPuntos(int[])"}];updateSearchResults();

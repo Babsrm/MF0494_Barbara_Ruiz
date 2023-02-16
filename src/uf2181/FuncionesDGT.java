@@ -1,14 +1,18 @@
-/**
- * 
- */
 package uf2181;
 
 /**
- * @author David
+ * Librería de funciones necesarias para el proyecto MF0494
+ * @author Barbara Ruiz
  *
  */
 public class FuncionesDGT {
-
+	
+	/**
+	 * Función que, dado un vector de enteros con los puntos de los conductores, devuelve la media de puntos de ese vector.
+	 * @param puntos int puntos del carnet de conducir.
+	 * @return double devuelve la media de los puntos del array.
+	 * @throws ArrayIndexOutOfBoundsException Cuando el vector tiene una logitud igual a 0.
+	 */
 	public double mediaPuntos(int puntos[]) {
 		double suma = 0;
 		
@@ -19,6 +23,12 @@ public class FuncionesDGT {
 		return suma/puntos.length;
 	}
 	
+	/**
+	 * Función a la que le pasamos dos parámetros: tipo de conductor y aire. El logaritmo calcula, en base a un baremo, cuál es la tasa máxima permitida según el tipo de conductor y si la prueba ha sido por aire expirado(true) o por sangre(false).
+	 * @param tipoConductor String Se debe de indicar si el conductor es General o es Novel(o profesional).
+	 * @param aire boolean Se indica true cuando la prueba efectuada haya sido por aire expirado. Se indica false cuando la prueba efectuada haya sido por análisis de sangre.
+	 * @return double Devuelve la tasa máxima permitida de alcohol por aire expirado o por sangre según su parámetro introducido.
+	 */
 	public double maximaTasaPermitida(String tipoConductor, boolean aire) {
 		double tasa=0.25;
 		if (tipoConductor.equalsIgnoreCase("General")) {
